@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beyond the Scroll · Build-Your-Routine & KPI Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ee;--ink:#1c1b19;--mute:#6b675f;--card:#fff;--line:#e1dbd0;--acc:#3f5d4a;--acc2:#dfe8d8;--warm:#c2693f;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141412;--ink:#efece6;--mute:#a09b91;--card:#1d1d1a;--line:#34322d;--acc:#9cc3a8;--acc2:#25302a;--warm:#e08a63;--on:#141412}}
+:root[data-theme="dark"]{--bg:#141412;--ink:#efece6;--mute:#a09b91;--card:#1d1d1a;--line:#34322d;--acc:#9cc3a8;--acc2:#25302a;--warm:#e08a63;--on:#141412}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,Arial,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1;margin:0}
+a{color:var(--acc)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 5%;flex-wrap:wrap}
+.logo{font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:14px}nav a{text-decoration:none;color:var(--ink)}
+.cartbtn{background:var(--acc);color:var(--on);padding:6px 14px;border-radius:20px}
+.wrap{max-width:1100px;margin:auto;padding:0 5%}
+.hero{padding:64px 0 48px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,76px);letter-spacing:-1.5px}.hero h1 em{color:var(--warm)}
+.hero p{font-size:18px;color:var(--mute);max-width:520px;margin:18px 0 24px}
+.btn{background:var(--acc);color:var(--on);border:0;padding:11px 20px;border-radius:24px;font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.o{background:none;color:var(--ink);border:1px solid var(--line)}.btn.s{padding:7px 14px;font-size:13px}
+.shelf{display:flex;gap:14px;justify-content:center;align-items:flex-end;background:var(--acc2);border-radius:20px;padding:36px 20px 24px}
+.bt{width:44px;height:var(--h,86px);background:var(--col);border-radius:7px 7px 10px 10px;position:relative;box-shadow:inset -6px 0 0 #0001}
+.bt:before{content:"";position:absolute;left:12px;top:-16px;width:20px;height:18px;background:var(--ink);border-radius:4px 4px 0 0;opacity:.85}
+.bt:after{content:"";position:absolute;left:7px;right:7px;top:34%;height:26px;background:#fffc;border-radius:3px}
+section{padding:54px 0;border-top:1px solid var(--line)}
+.tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:10px}.lead{color:var(--mute);max-width:640px;margin:0 0 24px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 15px;border-radius:20px;font:500 14px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card .pic{background:var(--acc2);border-radius:10px;height:130px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px}
+.meta{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:1px}.card h3{font-size:19px}
+.price{font-weight:600}.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+.det{font-size:13px;color:var(--mute);background:var(--bg);padding:10px;border-radius:8px}.det b{color:var(--ink)}
+.quiz{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}.quiz h3{font-size:17px;font-family:Inter,sans-serif;margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rt{list-style:none;padding:0;margin:0}.rt li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.rt small{color:var(--mute);display:block}
+.warn{font-size:13px;background:var(--acc2);padding:12px 14px;border-radius:10px;margin-top:14px}
+.cartrow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0}
+.k{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.k b{font:600 28px Fraunces,Georgia,serif;display:block}.k span{font-size:12px;color:var(--mute)}
+.log{font:12px/1.7 ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;min-height:90px;color:var(--mute)}.log i{color:var(--warm);font-style:normal}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line)}th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--acc2)}
+footer{padding:30px 5%;border-top:1px solid var(--line);font-size:13px;color:var(--mute);text-align:center}
+@media(max-width:720px){.hero,.two{grid-template-columns:1fr}.shelf{order:-1}}
+</style></head>
+<body>
+<header><div class="logo">Beyond the Scroll</div><nav><a href="#shop">Shop</a><a href="#build">Build routine</a><a href="#lab">KPI lab</a><a href="#audit">Audit</a><a class="cartbtn" href="#cart">Cart (<span id="cc">0</span>)</a></nav></header>
+<div class="wrap">
+<div class="hero"><div><div class="tag">Student KPI audit · Skincare D2C prototype</div><h1>Skincare, <em>built around you</em>.</h1><p>Choose products, or answer three questions to get a routine matched to your skin. Every click feeds a live KPI panel that shows how a brand could measure the journey from curiosity to purchase.</p><a class="btn" href="#build">Build my routine</a> <a class="btn o" href="#shop">Browse products</a></div>
+<div class="shelf" aria-hidden="true"><div class="bt" style="--col:#c9d6c1;--h:96px"></div><div class="bt" style="--col:#e8c9a8;--h:78px"></div><div class="bt" style="--col:#b9c8d8;--h:110px"></div><div class="bt" style="--col:#e3b7a8;--h:88px"></div></div></div>
+
+<section id="shop"><div class="tag">01 · Catalogue</div><h2>Shop by step</h2><p class="lead">Open “Details” to see how a product is used (this fires a view event). Add it to your cart to fire an add-to-cart event.</p><div class="chips" id="filters"></div><div class="grid" id="catalog"></div></section>
+
+<section id="build"><div class="tag">02 · Customise</div><h2>Build your routine</h2><p class="lead">Rules-based, not medical advice. It matches your skin type and concerns, limits how many actives a beginner gets, and splits conflicting actives onto separate nights.</p>
+<div class="quiz"><h3>Your skin type</h3><div class="chips" id="q-type"></div><h3>Main concerns (pick any)</h3><div class="chips" id="q-con"></div><h3>Experience with active ingredients</h3><div class="chips" id="q-exp"></div><button class="btn" onclick="build()">Build my routine</button></div>
+<div id="routine" style="margin-top:20px"></div></section>
+
+<section id="cart"><div class="tag">03 · Checkout</div><h2>Your cart</h2><div id="cartbox"></div></section>
+
+<section id="lab"><div class="tag">04 · KPI lab</div><h2>Live KPIs from this session</h2><p class="lead">Computed from your own clicks in this browser tab. It shows the measurement logic only; it is not The Ordinary’s data and not real customer behaviour.</p><div class="kpis" id="kpis"></div><div class="tag">Event log (GA4-style names)</div><div class="log" id="log">Interact with the site to see events.</div></section>
+
+<section id="audit"><div class="tag">05 · Audit findings</div><h2>From audit finding to site feature</h2><div class="tw"><table><thead><tr><th>Gap in the first version</th><th>Change made</th><th>Event / KPI it enables</th></tr></thead><tbody>
+<tr><td>Described KPIs but offered nothing to measure</td><td>Working catalogue, cart and demo checkout</td><td>view_item, add_to_cart, begin_checkout, purchase</td></tr>
+<tr><td>Guidance was static text</td><td>Three-question routine builder with safety rules</td><td>quiz_start, quiz_complete, routine_to_cart</td></tr>
+<tr><td>Funnel was only a diagram</td><td>Live KPI lab with defined numerators and denominators</td><td>Product-to-cart, checkout completion, AOV</td></tr>
+<tr><td>Risk of unsupported claims</td><td>Illustrative products and prices, clear disclaimers</td><td>Keeps evidence separate from assumption</td></tr></tbody></table></div>
+<p class="warn"><b>Still to verify by you:</b> event names against Google’s GA4 recommended-events documentation, brand facts on the official site (with access date), and any real GA4 demo or Meta figures you cite.</p></section>
+</div>
+<footer>Educational student prototype. Not affiliated with The Ordinary. Product names, ingredients and prices are illustrative; check the official site. Not medical advice; patch test and see a dermatologist for skin conditions.</footer>
+<script>
+const P=[
+{id:1,n:"Gentle Foaming Cleanser",c:"Cleanse",t:"AB",s:["oily","combination"],k:["acne"],pr:12,col:"#c9d6c1",u:"Massage onto damp skin, rinse.",a:"Avoid over-washing."},
+{id:2,n:"Hydrating Milk Cleanser",c:"Cleanse",t:"AB",s:["dry","sensitive"],k:["dehydration"],pr:12,col:"#e8d9c4",u:"Apply to dry or damp skin, wipe or rinse.",a:"Fragrance-free base."},
+{id:3,n:"Niacinamide + Zinc Serum",c:"Treat",t:"AB",s:["oily","combination","dry","sensitive"],k:["acne","dullness"],pr:11,col:"#b9c8d8",u:"A few drops after cleansing.",a:"Start every other day if skin is reactive."},
+{id:4,n:"Vitamin C Suspension",c:"Treat",t:"AM",s:["oily","combination","dry"],k:["dark spots","dullness"],pr:14,col:"#e8c9a8",u:"Morning, before moisturiser and SPF.",a:"Can tingle; patch test first."},
+{id:5,n:"Hyaluronic Acid Serum",c:"Treat",t:"AB",s:["oily","combination","dry","sensitive"],k:["dehydration"],pr:13,col:"#bfd6d2",u:"Apply to slightly damp skin, then moisturise.",a:"Gentle; suits all skin types."},
+{id:6,n:"Salicylic Acid 2% Solution",c:"Treat",t:"PM",s:["oily","combination"],k:["acne"],tag:"exfoliant",pr:10,col:"#d8c3d8",u:"Evening, a thin layer on congested areas.",a:"Do not combine with a retinoid on the same night."},
+{id:7,n:"Lactic Acid Exfoliant",c:"Treat",t:"PM",s:["oily","combination","dry"],k:["dullness","dark spots"],tag:"exfoliant",pr:11,col:"#e3b7a8",u:"Evening, 1–2 nights a week to start.",a:"Use SPF the next morning."},
+{id:8,n:"Retinol Emulsion",c:"Treat",t:"PM",s:["oily","combination","dry"],k:["fine lines","dark spots"],tag:"retinoid",pr:15,col:"#cfc3a8",u:"Evening, pea-sized amount, 2 nights a week to start.",a:"Not for pregnancy; ask a doctor. Never on the same night as acids."},
+{id:9,n:"Peptide Serum",c:"Treat",t:"AB",s:["oily","combination","dry","sensitive"],k:["fine lines"],pr:16,col:"#c4d3bd",u:"Morning or evening after cleansing.",a:"Layer under moisturiser."},
+{id:10,n:"Light Gel Moisturiser",c:"Moisturise",t:"AB",s:["oily","combination"],k:[],pr:13,col:"#c2d9e0",u:"Final step of the evening routine, light layer.",a:"Reapply as needed."},
+{id:11,n:"Barrier Cream",c:"Moisturise",t:"AB",s:["dry","sensitive"],k:["dehydration"],pr:15,col:"#eadfce",u:"Final step of every routine.",a:"Rich texture."},
+{id:12,n:"Mineral SPF 30",c:"Protect",t:"AM",s:["oily","combination","dry","sensitive"],k:[],pr:16,col:"#f0e2b8",u:"Last step each morning, generous amount.",a:"Reapply every 2 hours in sun."}];
+const TYPES=["oily","combination","dry","sensitive"],CON=["acne","dark spots","fine lines","dullness","dehydration"],STEPS=["All","Cleanse","Treat","Moisturise","Protect"];
+let Q={type:null,exp:null,con:[]},cart={},ev=[],viewed=new Set,added=new Set,S={qs:0,qc:0,rg:0,rc:0,co:0,pu:0,rev:0},filt="All",out=false;
+const $=i=>document.getElementById(i),pid=i=>P.find(p=>p.id===i);
+function log(n,d){ev.unshift('<i>'+n+'</i> '+(d||''));kpi();$('log').innerHTML=ev.slice(0,8).join('<br>')}
+function chips(el,list,sel,fn,multi){$(el).innerHTML=list.map(x=>'<button class="chip" aria-pressed="'+(multi?Q.con.includes(x):sel===x)+'" onclick="'+fn+'(\''+x+'\')">'+x+'</button>').join('')}
+function drawQ(){chips('q-type',TYPES,Q.type,'setT');chips('q-con',CON,0,'setC',1);chips('q-exp',["new to actives","experienced"],Q.exp,'setE')}
+function qs(){if(!S.qs){S.qs=1;log('quiz_start')}}
+function setT(x){qs();Q.type=x;drawQ()}function setE(x){qs();Q.exp=x;drawQ()}
+function setC(x){qs();Q.con=Q.con.includes(x)?Q.con.filter(y=>y!==x):[...Q.con,x];drawQ()}
+function bottle(c){return '<div class="bt" style="--col:'+c+'"></div>'}
+function drawCat(){$('filters').innerHTML=STEPS.map(s=>'<button class="chip" aria-pressed="'+(s===filt)+'" onclick="filt=\''+s+'\';drawCat()">'+s+'</button>').join('');
+$('catalog').innerHTML=P.filter(p=>filt==="All"||p.c===filt).map(p=>'<div class="card"><div class="pic">'+bottle(p.col)+'</div><div class="meta">'+p.c+' · '+({AM:"AM",PM:"PM",AB:"AM / PM"})[p.t]+'</div><h3>'+p.n+'</h3><div class="det" id="d'+p.id+'" hidden><b>How:</b> '+p.u+'<br><b>Note:</b> '+p.a+'</div><div class="row"><span class="price">$'+p.pr+'</span><span><button class="btn o s" onclick="det('+p.id+')">Details</button> <button class="btn s" onclick="add('+p.id+',\'catalog\')">Add</button></span></div></div>').join('')}
+function det(i){const e=$('d'+i);e.hidden=!e.hidden;if(!e.hidden&&!viewed.has(i)){viewed.add(i);log('view_item',pid(i).n)}else kpi()}
+function add(i,src){cart[i]=(cart[i]||0)+1;added.add(i);log('add_to_cart',pid(i).n+' ('+src+')');drawCart()}
+function build(){if(!Q.type||!Q.exp){$('routine').innerHTML='<p class="warn">Please choose a skin type and your experience level first.</p>';return}
+const exp=Q.exp==="experienced",sc=p=>p.k.filter(x=>Q.con.includes(x)).length,ok=p=>p.s.includes(Q.type);
+const first=c=>P.find(p=>p.c===c&&ok(p)),n=exp?2:1;
+let tr=P.filter(p=>p.c==="Treat"&&ok(p)&&sc(p)>0&&(exp||p.tag!=="retinoid")).sort((a,b)=>sc(b)-sc(a));
+let am=tr.filter(p=>p.t!=="PM"&&!p.tag).slice(0,n),pm=tr.filter(p=>p.t!=="AM").slice(0,n);
+if(!am.length)am=[pid(5)];if(!pm.length)pm=[pid(5)];
+const mo=first("Moisturise"),cl=first("Cleanse"),sp=pid(12),split=pm.some(p=>p.tag==="retinoid")&&pm.some(p=>p.tag==="exfoliant");
+const R={am:[cl,...am,mo,sp],pm:[cl,...pm,mo],split};R.ids=[...new Set([...R.am,...R.pm].map(p=>p.id))];window.R=R;S.rg++;S.qc=1;log('quiz_complete',Q.type+', '+(Q.con.join('/')||'no concern')+', '+Q.exp);
+const li=a=>a.map((p,i)=>'<li><span><b>'+(i+1)+'. '+p.n+'</b><small>'+p.c+'</small></span><span>$'+p.pr+'</span></li>').join('');
+const tot=R.ids.reduce((s,i)=>s+pid(i).pr,0);
+let w='Introduce one new active at a time and patch test first. Wear SPF daily.';
+if(split)w='Retinol and acid are on the same shelf, so use them on separate nights (e.g. Mon/Thu retinol, Tue/Fri exfoliant). '+w;
+if(!exp)w+=' As a beginner you get one treatment per routine; add more after a few weeks if skin stays calm.';
+$('routine').innerHTML='<div class="two"><div class="card"><h3>Morning</h3><ul class="rt">'+li(R.am)+'</ul></div><div class="card"><h3>Evening</h3><ul class="rt">'+li(R.pm)+'</ul></div></div><p class="warn">'+w+'</p><p><button class="btn" onclick="addR()">Add full routine to cart · $'+tot+'</button></p>'}
+function addR(){R.ids.forEach(i=>{cart[i]=(cart[i]||0)+1;added.add(i)});S.rc++;log('routine_to_cart',R.ids.length+' items');drawCart()}
+function qty(i,d){cart[i]+=d;if(cart[i]<=0)delete cart[i];log('cart_update',pid(i).n);drawCart()}
+function drawCart(){const ids=Object.keys(cart).map(Number);$('cc').textContent=ids.reduce((s,i)=>s+cart[i],0);
+if(!ids.length){$('cartbox').innerHTML='<p class="lead">'+(S.pu?'Demo order placed. Thanks for testing the funnel.':'Your cart is empty.')+'</p>';return}
+const tot=ids.reduce((s,i)=>s+cart[i]*pid(i).pr,0);
+$('cartbox').innerHTML=ids.map(i=>'<div class="cartrow"><span>'+pid(i).n+'</span><span class="qty"><button onclick="qty('+i+',-1)" aria-label="Less">−</button> '+cart[i]+' <button onclick="qty('+i+',1)" aria-label="More">+</button> &nbsp; $'+cart[i]*pid(i).pr+'</span></div>').join('')+'<p><b>Total: $'+tot+'</b></p><button class="btn" onclick="chk('+tot+')">'+(out?'Confirm demo order':'Begin checkout')+'</button>'}
+function chk(t){if(!out){out=true;S.co++;log('begin_checkout','$'+t);drawCart()}else{out=false;S.pu++;S.rev+=t;log('purchase','$'+t+' (demo)');cart={};drawCart()}}
+function pct(a,b){return b?Math.round(a/b*100)+'%':'—'}
+function kpi(){const v=[...viewed],pc=v.filter(i=>added.has(i)).length;
+const K=[[pct(pc,v.length),"Product-to-cart rate (viewed products later added ÷ products viewed)"],[S.qs?pct(S.qc,S.qs):'—',"Quiz completion (completed ÷ started)"],[pct(S.rc,S.rg),"Routine-to-cart (routines added ÷ routines built)"],[pct(S.pu,S.co),"Checkout completion (purchases ÷ begin_checkout)"],[S.pu?'$'+Math.round(S.rev/S.pu):'—',"Average order value (revenue ÷ orders)"]];
+$('kpis').innerHTML=K.map(k=>'<div class="k"><b>'+k[0]+'</b><span>'+k[1]+'</span></div>').join('')}
+drawQ();drawCat();drawCart();kpi();
+</script></body></html>
